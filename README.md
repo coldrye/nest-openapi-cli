@@ -7,10 +7,20 @@
 
 NOTE: ATM this has not been published to npmjs.com, so you will have to clone the repo and install it locally
 
+To install, just run
+
 ```
-npm install -g ./nest-swagger-cli
+cd nest-swagger-cli
+pnpm install
+pnpm build
+npm link
 ```
 
+and to uninstall, use
+
+```
+npm uninstall -g nest-swagger-cli
+```
 
 ### Generate an OpenAPI Document From a Local Package
 
