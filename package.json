@@ -6,8 +6,14 @@
   "private": true,
   "license": "UNLICENSED",
   "bin": {
-    "nest-swagger": "dist/main"
+    "nest-swagger": "dist/main.js"
   },
+  "engines": {
+    "node": ">= 12.9.0"
+  },
+  "files": [
+      "dist"
+  ],
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import { Command, Option } from 'nest-commander';
-import { BaseCommand, BaseCommandOptions } from '../base.command';
+import { BaseCommand, BaseCommandOptions } from './base.command';
 
 interface UrlCommandOptions extends BaseCommandOptions {
     url: string;

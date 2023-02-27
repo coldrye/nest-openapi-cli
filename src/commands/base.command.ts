@@ -1,3 +1,4 @@
+import { OpenAPIObject } from '@nestjs/swagger';
 import * as jsyaml from 'js-yaml';
 import { CommandRunner, Option } from 'nest-commander';
 
@@ -26,7 +27,7 @@ export abstract class BaseCommand extends CommandRunner {
         return Promise.resolve();
     }
 
-    protected async formatDocument<T extends BaseCommandOptions>(document: object, options: T): Promise<string> {
+    protected async formatDocument<T extends BaseCommandOptions>(document: OpenAPIObject, options: T): Promise<string> {
         switch (options.format) {
             case 'yaml': {
                 return Promise.resolve(jsyaml.dump(document, { indent: options.level }));
@@ -53,11 +54,11 @@ export abstract class BaseCommand extends CommandRunner {
         return Promise.resolve(document);
     }
 
-    protected async poorMansValidation<T extends BaseCommandOptions>(document: object, options: T): Promise<object> {
+    protected async poorMansValidation<T extends BaseCommandOptions>(document: object, options: T): Promise<OpenAPIObject> {
         if (document['openapi'] === undefined) {
             return Promise.reject(new Error('not an OpenAPI document'));
         }
-        return Promise.resolve(document);
+        return Promise.resolve(document as OpenAPIObject);
     }
 
     protected async writeDocument<T extends BaseCommandOptions>(document: string, options: T): Promise<void> {
