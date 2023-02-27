@@ -62,10 +62,10 @@ export abstract class BaseCommand extends CommandRunner {
     }
 
     protected async writeDocument<T extends BaseCommandOptions>(document: string, options: T): Promise<void> {
-        if (typeof options.out === 'string' && options.out) {
-            throw new Error('not implemented yet');
-        } else {
+        if (options.out === 'stdout') {
             process.stdout.write(document);
+        } else {
+            throw new Error('not implemented yet');
         }
     }
 
@@ -93,6 +93,7 @@ export abstract class BaseCommand extends CommandRunner {
     @Option({
         flags: '-o, --out [path]',
         name: 'out',
+        defaultValue: 'stdout',
         description: 'The output path, defaults to stdout'
     })
     parseOutOption(option: string): string {
